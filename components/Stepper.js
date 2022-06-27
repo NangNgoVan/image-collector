@@ -32,12 +32,12 @@ export function Tab({ children }) {
     )
 }
 
-export default function Stepper({ children, onStepIndexChanged }) {
+export default function Stepper({ children, onStepIndexChanged, stepClickable=false, activeStepIndex }) {
     const steps = children.map((child, index) => 
         <Fragment key={child.props.id}>
             <div 
-                style={{display: 'flex', gap: '0.5rem'}} 
-                onClick={() => onStepIndexChanged(index, child.props.id)}>
+                style={{display: 'flex', gap: '0.5rem', color: index==activeStepIndex?'blue':'initial'}} 
+                onClick={() => stepClickable==true?onStepIndexChanged(index, child.props.id):null}>
                 <span>
                     <svg width="24" height="24">
                         <circle cx={12} cy={12} r={12} fill="gray"/>
